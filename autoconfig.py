@@ -17,7 +17,7 @@ parser.add_argument("-4", help="do IPv4 lookup", action="store_true")
 parser.add_argument("-6", help="do IPv6 lookup", action="store_true")
 parser.add_argument("-t", help="set timeout in seconds")
 
-arguments = parser.parse_args()
+arguments = vars(parser.parse_args())
 wait_time = 20
 
 #print("# site?")
