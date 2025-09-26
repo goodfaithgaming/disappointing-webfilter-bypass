@@ -4,6 +4,9 @@ This program is a tool to generate /etc/hosts entries for your choice of website
 
 Dependencies: selenium, geckolib, firefox
 
+How to install:
+execute install.sh with "./install.sh"
+
 How to run:
 execute run.sh with "./run.sh"
 
