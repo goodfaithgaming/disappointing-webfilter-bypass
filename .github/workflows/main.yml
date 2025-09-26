@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test install/run against example.com
+    runs-on: ubuntu-latest
+    steps:
+      - name: test install
+        run: ./install.sh
+      - name: test run
+        run: ./run.sh -wd46 
