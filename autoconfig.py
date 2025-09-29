@@ -27,30 +27,32 @@ site = arguments["domain"]
 driver = webdriver.Firefox()
 
 wait = WebDriverWait(driver, 20)
-driver.get("https://mxtoolbox.com/DnsLookup.aspx")
-elem = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_ucToolhandler_txtToolInput")
-elem.clear()
-elem.send_keys("a:" + site)
-elem.send_keys(Keys.RETURN)
-#time.sleep(2)
-wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="tool-result-body"]')))
-content = driver.find_element(By.XPATH, '//div[@class="tool-result-body"]')
-items=content.find_elements(By.XPATH, './/tr/td[@class="table-column-IP_Address"]/a')
-dnsarecords = []
-for item in items:
+if arguments["4"]:
+  driver.get("https://mxtoolbox.com/DnsLookup.aspx")
+  elem = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_ucToolhandler_txtToolInput")
+  elem.clear()
+  elem.send_keys("a:" + site)
+  elem.send_keys(Keys.RETURN)
+  #time.sleep(2)
+  wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="tool-result-body"]')))
+  content = driver.find_element(By.XPATH, '//div[@class="tool-result-body"]')
+  items=content.find_elements(By.XPATH, './/tr/td[@class="table-column-IP_Address"]/a')
+  dnsarecords = []
+  for item in items:
     dnsarecords.append(item.text)
 
-driver.get("https://mxtoolbox.com/DnsLookup.aspx")
-elem = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_ucToolhandler_txtToolInput")
-elem.clear()
-elem.send_keys("aaaa:" + site)
-elem.send_keys(Keys.RETURN)
-#time.sleep(2)
-wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="tool-result-body"]')))
-content = driver.find_element(By.XPATH, '//div[@class="tool-result-body"]')
-items=content.find_elements(By.XPATH, './/tr/td[@class="table-column-IPv6_Address"]/a')
-dnsaaaarecords = []
-for item in items:
+if arguments["6"]:
+  driver.get("https://mxtoolbox.com/DnsLookup.aspx")
+  elem = driver.find_element(By.ID, "ctl00_ContentPlaceHolder1_ucToolhandler_txtToolInput")
+  elem.clear()
+  elem.send_keys("aaaa:" + site)
+  elem.send_keys(Keys.RETURN)
+  #time.sleep(2)
+  wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="tool-result-body"]')))
+  content = driver.find_element(By.XPATH, '//div[@class="tool-result-body"]')
+  items=content.find_elements(By.XPATH, './/tr/td[@class="table-column-IPv6_Address"]/a')
+  dnsaaaarecords = []
+  for item in items:
     dnsaaaarecords.append(item.text)
 
 #www = bool(input("# 'www.*'? "))
@@ -59,19 +61,21 @@ www = arguments["w"]
 dot = arguments["d"]
 domains = [site]
 if www:
-    domains.append('www.' + site)
+  domains.append('www.' + site)
 
 if dot:
-    domains.append(site + '.')
+  domains.append(site + '.')
 
 if www and dot:
-    domains.append('www.' + site + '.')
+  domains.append('www.' + site + '.')
 
 domains = ' '.join(domains)
-print("# ipv4:")
-for record in dnsarecords:
+if arguments["6"]:
+  print("# ipv4:")
+  for record in dnsarecords:
     print(record + '\t' + domains)
 
-print("# ipv6:")
-for record in dnsaaaarecords:
+if arguments["6"]:
+  print("# ipv6:")
+  for record in dnsaaaarecords:
     print(record + '\t' + domains)
