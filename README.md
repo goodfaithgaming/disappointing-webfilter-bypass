@@ -8,6 +8,4 @@ How to install:
 execute install.sh with "./install.sh"
 
 How to run:
-execute run.sh with "./run.sh"
-
-type domain ('example.com')
+simplest useage is "./run.sh -wd46 example.com"
