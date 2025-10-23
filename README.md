@@ -2,7 +2,7 @@
 
 This program is a tool to generate /etc/hosts entries for your choice of website, even on networks with DNS filtering agents.
 
-Dependencies: selenium, geckolib, firefox
+Dependencies: selenium, geckolib, firefox, virtualenv
 
 How to install:
 execute install.sh with "./install.sh"
